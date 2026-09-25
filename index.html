@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campus Help Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A2340;--mute:#64708A;--bg:#EEF1F8;--card:#fff;--line:#E1E6F0;--ind:#3B4CCA;--indd:#2A379B;--soft:#EAEDFB;--side:#1B2559;--side2:#2A3775;--saf:#F2A93B;--red:#D64545;--amb:#D9822B;--grn:#2F9E6E;--r:16px}
+*{box-sizing:border-box}
+body{margin:0;font:14.5px/1.55 "Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:
+  radial-gradient(900px 500px at 100% -10%,#E4E9FC 0%,transparent 60%),
+  radial-gradient(700px 400px at -10% 0%,#FDF2E3 0%,transparent 55%),var(--bg);
+  background-attachment:fixed;font-variant-numeric:tabular-nums}
+h1,h2,h3,h4{font-family:"Sora","Plus Jakarta Sans",sans-serif}
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+aside{background:linear-gradient(190deg,var(--side),var(--side2) 130%);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;padding:0 8px 24px;font-family:"Sora",sans-serif}
+.logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--saf),#F7C36B);color:var(--side);display:grid;place-items:center;font-weight:800;box-shadow:0 4px 14px rgba(242,169,59,.35)}
+aside nav button{display:flex;align-items:center;gap:10px;width:100%;font:inherit;font-weight:600;color:#B9C2EA;background:none;border:0;padding:11px 12px;border-radius:11px;cursor:pointer;text-align:left;transition:background .15s,color .15s}
+aside nav button svg{opacity:.85;flex:none}
+aside nav button:hover{background:rgba(255,255,255,.08);color:#fff}
+aside nav button.on{background:#fff;color:var(--side);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+aside nav button.on svg{opacity:1}
+.spacer{flex:1}
+.me{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:12px;display:grid;gap:8px;backdrop-filter:blur(6px)}
+.me label{font-size:11.5px;color:#B9C2EA;text-transform:uppercase;letter-spacing:.4px}
+.me select,.me button{font:inherit;padding:8px;border-radius:9px;border:1px solid #3B488F;background:#1B2559;color:#fff;width:100%}
+.me button{cursor:pointer;background:linear-gradient(135deg,var(--saf),#E8952B);color:#3A2400;border:0;font-weight:700;transition:filter .15s}
+.me button:hover{filter:brightness(1.06)}
+#clock{font-size:12px;color:#8E9AC4;padding:0 4px}
+.content{padding:28px 32px 54px;min-width:0;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.hero-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,var(--ind),var(--indd));box-shadow:0 8px 20px rgba(59,76,202,.28)}
+h1{font-size:25px;margin:0;letter-spacing:-.3px;font-weight:800}
+.sub{color:var(--mute);margin:2px 0 0}
+.card{background:var(--card);border-radius:var(--r);padding:18px;box-shadow:0 1px 2px rgba(26,35,64,.05),0 10px 28px rgba(26,35,64,.06);border:1px solid #F0F2F9}
+.split{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:start}
+#detail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{font:inherit;font-weight:600;border:0;background:#fff;color:var(--mute);padding:7px 14px;border-radius:99px;cursor:pointer}
+.tabs button.on{background:var(--ind);color:#fff}
+.tabs b{opacity:.75;margin-left:4px}
+.tools{display:flex;gap:8px;margin-bottom:12px}
+input,select,textarea{font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #C5CBF5;border-color:var(--ind)}
+.tools input{flex:1;min-width:0}
+textarea{width:100%;min-height:76px;resize:vertical}
+.pri{font:inherit;font-weight:700;background:var(--ind);color:#fff;border:0;padding:10px 18px;border-radius:10px;cursor:pointer}
+.pri:hover{background:var(--indd)}
+.sec{font:inherit;font-weight:600;background:#fff;border:1.5px solid var(--line);padding:8px 14px;border-radius:10px;cursor:pointer;color:var(--ink)}
+.sec:hover{border-color:var(--ind)}
+.tk{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;padding:14px 18px 14px 20px;margin-bottom:10px;background:#fff;border-radius:var(--r);cursor:pointer;position:relative;box-shadow:0 1px 2px rgba(26,35,64,.05);border:2px solid transparent;transition:box-shadow .15s,transform .15s}
+.tk:hover{box-shadow:0 10px 26px rgba(26,35,64,.1);transform:translateY(-1px)}
+.tk.sel{border-color:var(--ind);box-shadow:0 10px 26px rgba(59,76,202,.14)}
+.tk:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:5px;border-radius:0 4px 4px 0;background:var(--pc)}
+.P1{--pc:var(--red)}.P2{--pc:var(--amb)}.P3{--pc:var(--ind)}.P4{--pc:#9AA5BE}
+.cat-ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--soft);color:var(--indd);flex:none;font-size:18px}
+.tk h3{margin:0;font-size:15px;font-weight:700}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(214,69,69,.55)}70%{box-shadow:0 0 0 7px rgba(214,69,69,0)}100%{box-shadow:0 0 0 0 rgba(214,69,69,0)}}
+.meta{color:var(--mute);font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:99px;font-size:12.5px;font-weight:600;background:var(--soft);color:var(--indd)}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.pc{background:var(--pc);color:#fff}
+.st-Pending{background:#FFF1DC;color:#9A5A0B}.st-Resolved,.st-Closed{background:#DFF3EA;color:#1F7350}.st-Rejected{background:#EDEFF4;color:var(--mute)}
+.meter{height:6px;background:#E8ECF5;border-radius:9px;overflow:hidden;margin-top:6px;width:120px}
+.meter i{display:block;height:100%;border-radius:9px;background:var(--grn);transition:width .5s ease}
+.m-At i{background:var(--amb)}.m-Breached i{background:var(--red)}.m-Paused i{background:#9AA5BE}
+.t-Breached,.t-Missed{color:var(--red);font-weight:700}.t-At{color:var(--amb);font-weight:700}.t-Paused,.t-Closed{color:var(--mute)}.t-Met,.t-On{color:var(--grn);font-weight:600}
+.right{text-align:right;min-width:120px}
+.av{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:10px;font-weight:700;margin-right:6px;vertical-align:middle}
+.esc{color:var(--red);font-weight:700;font-size:12.5px}
+.steps{display:flex;margin:14px 0 4px}
+.steps div{flex:1;text-align:center;font-size:12px;color:var(--mute);position:relative}
+.steps div:before{content:"";display:block;width:14px;height:14px;border-radius:50%;background:#D5DAEA;margin:0 auto 4px;position:relative;z-index:1}
+.steps div:after{content:"";position:absolute;top:6px;left:-50%;width:100%;height:2px;background:#D5DAEA}
+.steps div:first-child:after{display:none}
+.steps .done{color:var(--ink);font-weight:600}.steps .done:before,.steps .done:after{background:var(--ind)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;background:#F6F8FD;border-radius:12px;padding:12px 14px;margin:12px 0}
+.info span{color:var(--mute);font-size:12px;display:block}
+.blk{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.blk h4{margin:0 0 8px;font-size:14px}
+.row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding:0 0 14px 22px}
+.tl li:before{content:"";position:absolute;left:4px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--dc,#B8C0D4)}
+.tl li:after{content:"";position:absolute;left:8px;top:16px;bottom:-4px;width:1.5px;background:var(--line)}
+.tl li:last-child:after{display:none}
+.tl .status_changed{--dc:var(--ind)}.tl .escalated{--dc:var(--red)}.tl .comment{--dc:var(--saf)}.tl .assigned{--dc:#6E7DD8}
+.tl .int{background:#FFF7E8;border-radius:8px;padding:6px 8px 8px 22px}
+.tl .int:before{left:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.kpi{display:flex;align-items:center;gap:12px;border:1px solid #F0F2F9}
+.kpi-ic{width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;background:var(--kc,var(--ind));box-shadow:0 6px 14px color-mix(in srgb,var(--kc,var(--ind)) 45%,transparent)}
+.kpi b{display:block;font-size:26px;line-height:1.15;font-weight:800}
+.kpi span{color:var(--mute);font-size:12.5px}
+.ring{width:96px;height:96px;flex:none;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--grn) calc(var(--v)*1%),#E8ECF5 0);transition:background 1s ease}
+.ring b{width:72px;height:72px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:20px;box-shadow:inset 0 0 0 1px #F0F2F9}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.two h3{margin:0 0 12px;font-size:15px;display:flex;align-items:center;gap:8px}
+.bar{display:grid;grid-template-columns:118px 1fr 28px;gap:10px;align-items:center;margin:9px 0;font-size:13px}
+.bar div{background:#EEF1F8;border-radius:9px;height:10px;overflow:hidden}.bar i{display:block;height:10px;border-radius:9px;background:linear-gradient(90deg,var(--ind),#6E7DD8);transition:width .6s ease}
+.bar b{text-align:right}
+.empty svg{opacity:.55;margin-bottom:6px}
+.cats{display:flex;flex-wrap:wrap;gap:8px}
+.cats button{font:inherit;font-weight:600;padding:9px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;cursor:pointer}
+.cats button.on{background:var(--ind);color:#fff;border-color:var(--ind)}
+label.f{display:block;margin:16px 0 6px;font-weight:700}
+.empty{text-align:center;color:var(--mute);padding:34px 10px}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;display:none;max-width:90%;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#toast.bad{background:var(--red)}
+@media(max-width:1000px){.split{grid-template-columns:1fr}#detail{position:static;max-height:none}}
+@media(max-width:760px){.app{grid-template-columns:1fr}aside{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}.brand{padding:0}.spacer{display:none}aside nav{display:flex;gap:4px}.me{display:flex;flex:1;min-width:220px}#clock{display:none}.content{padding:18px 14px}}
+@media(prefers-reduced-motion:no-preference){.tk{transition:box-shadow .15s}}
+</style></head><body>
+<div class="app"><aside>
+  <div class="brand"><span class="logo">H</span>Campus Help Desk</div>
+  <nav id="nav"></nav><div class="spacer"></div><div id="clock"></div>
+  <div class="me"><label for="who">Signed in as</label><select id="who" onchange="login(+this.value)"></select><button id="adv" hidden onclick="advance()">Skip ahead 1 day</button></div>
+</aside><div class="content"><div id="main"></div></div></div><div id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let U,users=[],tickets=[],view="tickets",sel=null,newCat="Fees",f={q:"",prio:"",tab:"all"};
+const CATS=["Fees","Attendance","ID Card","Documents","Certificates","Other"];
+const DONE=["Resolved","Closed","Rejected"];
+const ic=(n,w=18)=>`<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${{list:"M4 6h16M4 12h16M4 18h10",plus:"M12 5v14M5 12h14",chart:"M5 20V10M12 20V4M19 20v-7",inbox:"M22 12h-6l-2 3h-4l-2-3H2M5.5 5h13l3 7v7a2 2 0 0 1-2 2H4.5a2 2 0 0 1-2-2v-7l3-7Z",clock:"M12 8v4l3 3M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",wave:"M3 12h4l3-8 4 16 3-8h4"}[n]}"/></svg>`;
+const CATI={"Fees":"💳","Attendance":"📋","ID Card":"🪪","Documents":"📄","Certificates":"🎓","Other":"❓"};
+const av=n=>{if(!n)return`<span class="av" style="background:#B8C0D4">?</span>`;let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))%360;return`<span class="av" style="background:hsl(${h} 45% 42%)">${n.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>`};
+const emptyState=(title,body)=>`<div class="card empty"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8 15a4 4 0 0 0 8 0"/></svg><div style="font-weight:700;color:var(--ink);margin-top:6px">${title}</div><div>${body}</div></div>`;
+async function api(p,body){
+  const r=await fetch("/api"+p,{method:body?"POST":"GET",headers:{"Content-Type":"application/json","X-User-Id":U?U.id:""},body:body?JSON.stringify(body):undefined});
+  const d=await r.json(); if(!r.ok) throw new Error(d.error||"Something went wrong"); return d;
+}
+function toast(m,bad){const t=$("#toast");t.textContent=m;t.className=bad?"bad":"";t.style.display="block";clearTimeout(t.h);t.h=setTimeout(()=>t.style.display="none",3500)}
+const run=async fn=>{try{await fn()}catch(e){toast(e.message,1)}};
+const rel=s=>{const a=Math.abs(s);return a<3600?Math.round(a/60)+" min":a<172800?Math.round(a/3600)+" hr":Math.round(a/86400)+" days"};
+const dt=ts=>new Date(ts*1000).toLocaleString([],{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+const cls=s=>s.split(" ")[0];
+const due=t=>DONE.includes(t.status)?"":t.status==="Pending Student"?"Clock paused":t.due_at<t.now?"Overdue by "+rel(t.now-t.due_at):"Due in "+rel(t.due_at-t.now);
+const pct=t=>DONE.includes(t.status)?100:Math.max(4,Math.min(100,Math.round((t.now-t.created_at)/(t.due_at-t.created_at)*100)));
+const stChip=s=>`<span class="chip st-${cls(s)}"><i></i>${s}</span>`;
+
+async function init(){
+  users=await api("/users");
+  $("#who").innerHTML=users.map(u=>`<option value="${u.id}">${esc(u.name)} · ${u.role}</option>`).join("");
+  let id=+(localStorage.getItem("uid")||0); if(!users.some(u=>u.id===id)) id=users[0].id; login(id);
+}
+function login(id){
+  U=users.find(u=>u.id===id); $("#who").value=id; try{localStorage.setItem("uid",id)}catch(e){}
+  const tabs=[["tickets","list",U.role==="student"?"My requests":"Ticket queue"]];
+  if(U.role==="student") tabs.push(["new","plus","New request"]);
+  if(U.role==="lead"||U.role==="admin") tabs.push(["dash","chart","Dashboard"]);
+  $("#nav").innerHTML=tabs.map(([k,i,l])=>`<button data-v="${k}" onclick="go('${k}')">${ic(i)}${l}</button>`).join("");
+  $("#adv").hidden=U.role!=="admin"; sel=null; go("tickets");
+}
+function go(v){
+  view=v; document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
+  run(async()=>{ if(v==="tickets") await showList(); else if(v==="new") showNew(); else await showDash(); });
+}
+const inTab=t=>({all:1,attn:!DONE.includes(t.status)&&(["Breached","At risk"].includes(t.sla)||t.escalation_level>0),wait:t.status.startsWith("Pending"),done:DONE.includes(t.status)})[f.tab];
+async function showList(){
+  tickets=await api("/tickets"); if(tickets[0]) $("#clock").textContent="Now: "+dt(tickets[0].now);
+  const stu=U.role==="student";
+  $("#main").innerHTML=`<div class="hero"><div class="hero-ic">${ic("inbox",22)}</div><div><h1>${stu?"My requests":"Ticket queue"}</h1><p class="sub">${stu?"Everything you've raised, and where it stands.":(U.role==="agent"?U.team+" team":"All teams")+" · newest first"}</p></div></div>
+  <div class="split"><div><div class="tabs" id="tabs"></div><div class="tools"><input id="q" placeholder="Search subject, student or #id" oninput="f.q=this.value;tbl()" value="${esc(f.q)}">
+  <select onchange="f.prio=this.value;tbl()"><option value="">Any priority</option>${["P1","P2","P3","P4"].map(s=>`<option ${f.prio===s?"selected":""}>${s}</option>`)}</select></div><div id="tbl"></div></div>
+  <div id="detail" class="card">${emptyState("Nothing selected yet","Pick a ticket on the left to see its progress, history and actions.")}</div></div>`;
+  tbl(); if(sel) openT(sel);
+}
+function tbl(){
+  const T=[["all","All"],["attn","Needs attention"],["wait","Waiting"],["done","Finished"]], cnt=k=>{const s=f.tab;f.tab=k;const n=tickets.filter(inTab).length;f.tab=s;return n};
+  $("#tabs").innerHTML=T.map(([k,l])=>`<button class="${f.tab===k?"on":""}" onclick="f.tab='${k}';tbl()">${l}<b>${cnt(k)}</b></button>`).join("");
+  const q=f.q.toLowerCase(), rows=tickets.filter(t=>inTab(t)&&(!f.prio||t.priority===f.prio)&&(!q||(t.subject+" "+t.student+" #"+t.id).toLowerCase().includes(q)));
+  $("#tbl").innerHTML=rows.length?rows.map(t=>`<div class="tk ${t.priority} ${t.id===sel?"sel":""}" onclick="openT(${t.id})">
+  <div class="cat-ic">${CATI[t.category]||"❓"}</div>
+  <div><h3>${esc(t.subject)}</h3><div class="meta"><span>#${t.id}</span><span>${esc(t.category)}</span><span>${esc(t.student)}</span><span>${t.age_days}d old</span>${t.escalation_level?`<span class="esc">Escalated L${t.escalation_level}</span>`:""}</div>
+  <div class="meta" style="margin-top:8px"><span class="chip pc">${t.priority==="P1"?'<span class="pulse"></span>':""}${t.priority}</span>${stChip(t.status)}<span>${av(t.assignee)}${esc(t.assignee||"Unassigned")}</span></div></div>
+  <div class="right"><div class="t-${cls(t.sla)}">${t.sla}</div><div class="meta" style="justify-content:flex-end">${due(t)}</div><div class="meter m-${cls(t.sla)}"><i style="width:${pct(t)}%"></i></div></div></div>`).join(""):emptyState("No tickets here","Try another tab, or clear the search and filters.");
+}
+function showNew(){
+  $("#main").innerHTML=`<div class="hero"><div class="hero-ic">${ic("plus",22)}</div><div><h1>New request</h1><p class="sub">Tell us what you need — the right team is assigned instantly.</p></div></div><div class="card" style="max-width:660px">
+  <label class="f" style="margin-top:0">Category</label><div class="cats" id="cats"></div>
+  <label class="f" for="s">Subject</label><input id="s" style="width:100%" placeholder="e.g. Fee paid but not reflected on the portal">
+  <label class="f" for="d">Details</label><textarea id="d" placeholder="Include dates, amounts or document names. Mention any deadline, exam or visa date so we can prioritise it."></textarea>
+  <div class="row" style="margin-top:16px"><button class="pri" onclick="create()">Submit request</button></div></div>`; cats();
+}
+function cats(){$("#cats").innerHTML=CATS.map(c=>`<button class="${c===newCat?"on":""}" onclick="newCat='${c}';cats()">${CATI[c]} ${c}</button>`).join("")}
+function create(){run(async()=>{
+  const r=await api("/tickets",{category:newCat,subject:$("#s").value,description:$("#d").value});
+  toast("Request #"+r.id+" submitted"); sel=r.id; f.tab="all"; go("tickets");
+})}
+async function openT(id){run(async()=>{
+  sel=id; const d=await api("/tickets/"+id), staff=U.role!=="student"; tbl();
+  const agents=users.filter(u=>u.role==="agent"||u.role==="lead"), S=["Open","In Progress","Resolved","Closed"];
+  const at=d.status==="Rejected"?-1:d.status.startsWith("Pending")?1:S.indexOf(d.status);
+  $("#detail").innerHTML=`<div class="meta">${CATI[d.category]||"❓"} Ticket #${d.id} · ${esc(d.category)}</div><h2 style="margin:2px 0 8px;font-size:19px;font-family:'Sora',sans-serif">${esc(d.subject)}</h2>
+  <div class="meta"><span class="chip pc ${d.priority}">${d.priority==="P1"?'<span class="pulse"></span>':""}${d.priority}</span>${stChip(d.status)}<span class="t-${cls(d.sla)}">SLA ${d.sla.toLowerCase()}</span>${d.escalation_level?`<span class="esc">Escalated L${d.escalation_level}</span>`:""}</div>
+  <div class="steps">${S.map((s,i)=>`<div class="${i<=at?"done":""}">${s}</div>`).join("")}</div>
+  <div class="info"><div><span>Student</span>${av(d.student)}${esc(d.student)}</div><div><span>Owner</span>${av(d.assignee)}${esc(d.assignee||"Unassigned")}</div>
+  <div><span>Raised</span>${dt(d.created_at)}</div><div><span>${due(d)?"Target":"Reopened"}</span>${due(d)||d.reopen_count+" time(s)"}</div></div>
+  <p style="margin:0">${esc(d.description)}</p>${d.resolution_note&&d.status!=="Open"?`<p><b>Resolution:</b> ${esc(d.resolution_note)}</p>`:""}
+  ${d.next.length?`<div class="blk"><h4>${staff?"Update status":"Not resolved?"}</h4><div class="row"><select id="ns">${d.next.map(s=>`<option value="${s}">${staff||s!=="Open"?s:"Reopen ticket"}</option>`)}</select></div>
+  <div class="row"><textarea id="note" placeholder="Note (needed for pending, resolved, rejected and reopened)"></textarea></div><div class="row"><button class="pri" onclick="setSt(${d.id})">Save status</button></div></div>`:""}
+  <div class="blk"><h4>Add a comment</h4><textarea id="cm" placeholder="${staff?"Reply to the student or leave a note":"Add details or reply to staff"}"></textarea>
+  <div class="row" style="align-items:center"><button class="pri" onclick="comment(${d.id})">Add comment</button>${staff?`<label><input type="checkbox" id="int"> Internal note</label>`:""}</div></div>
+  ${staff||!DONE.includes(d.status)?`<div class="blk"><h4>${staff?"Ownership and escalation":"Need it faster?"}</h4><div class="row">
+  ${staff?`<select id="as">${agents.map(a=>`<option value="${a.id}" ${a.name===d.assignee?"selected":""}>${esc(a.name)} (${a.team})</option>`)}</select><button class="sec" onclick="assign(${d.id})">Reassign</button>`:""}
+  ${DONE.includes(d.status)?"":`<button class="sec" onclick="escal(${d.id})">Escalate</button>`}</div></div>`:""}
+  <div class="blk"><h4>History</h4><ul class="tl">${d.activity.map(a=>`<li class="${a.action} ${a.internal?"int":""}"><b>${a.action.replace("_"," ")}</b> · ${esc(a.actor)}${a.internal?" · internal":""}<div>${esc(a.detail)}</div><div class="meta">${dt(a.ts)}</div></li>`).join("")}</ul></div>`;
+})}
+async function reload(){tickets=await api("/tickets");tbl()}
+const act=(id,p,b,m)=>run(async()=>{await api("/tickets/"+id+"/"+p,b);toast(m);await reload();openT(id)});
+const setSt=id=>act(id,"status",{status:$("#ns").value,note:$("#note").value},"Status updated");
+const assign=id=>act(id,"assign",{user_id:+$("#as").value},"Ticket reassigned");
+const escal=id=>{const r=prompt("Why does this need escalating?");if(r!==null)act(id,"escalate",{reason:r},"Ticket escalated")};
+const comment=id=>act(id,"comment",{body:$("#cm").value,internal:$("#int")?.checked},"Comment added");
+const advance=()=>run(async()=>{await api("/sim/advance",{hours:24});toast("Skipped ahead 1 day");go(view)});
+const bars=o=>{const m=Math.max(1,...Object.values(o));return Object.entries(o).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><div><i style="width:${v/m*100}%"></i></div><b>${v}</b></div>`).join("")||`<p class="empty">No data yet</p>`};
+async function showDash(){
+  const d=await api("/dashboard"), n=v=>v==null?"–":v;
+  const K=[["inbox","Open tickets",d.open,"var(--ind)"],["clock","SLA breached",d.breached,"var(--red)"],["wave","Escalated",d.escalated,"var(--amb)"],["clock","Avg first response",n(d.avg_first_response_hrs)+" hr","#E8952B"],["chart","Avg resolution",n(d.avg_resolution_hrs)+" hr","var(--grn)"],["wave","Reopened",d.reopened,"#8B95BE"]];
+  $("#main").innerHTML=`<div class="hero"><div class="hero-ic">${ic("chart",22)}</div><div><h1>Dashboard</h1><p class="sub">How the help desk is performing right now.</p></div></div>
+  <div class="kpis">${K.map(([icn,l,v,c])=>`<div class="card kpi" style="--kc:${c}"><div class="kpi-ic">${ic(icn,20)}</div><div><b>${v}</b><span>${l}</span></div></div>`).join("")}</div>
+  <div class="two"><div class="card" style="display:flex;gap:18px;align-items:center"><div class="ring" style="--v:${d.sla_compliance||0}"><b>${d.sla_compliance==null?"–":d.sla_compliance+"%"}</b></div><div><h3 style="margin:0">Resolved within SLA</h3><span class="meta">Share of resolved tickets that met their target</span></div></div>
+  <div class="card"><h3>${ic("list",16)}Status</h3>${bars(d.by_status)}</div><div class="card"><h3>${ic("wave",16)}Open by priority</h3>${bars(d.by_priority)}</div>
+  <div class="card"><h3>${ic("clock",16)}Ageing of open tickets</h3>${bars(d.ageing)}</div><div class="card"><h3>${ic("inbox",16)}Category</h3>${bars(d.by_category)}</div><div class="card"><h3>${ic("chart",16)}Open tickets per agent</h3>${bars(d.workload)}</div></div>`;
+}
+init().catch(e=>toast(e.message,1));
+</script></body></html>
